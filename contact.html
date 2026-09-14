@@ -1,0 +1,297 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+  <title>NMPP – Contact Us</title> 
+  <link rel="preconnect" href="https://fonts.googleapis.com"> 
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"> 
+  <style> 
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;} 
+    :root{--navy:#0b1e3d;--navy2:#122554;--gold:#c9922a;--gold2:#f0b940;--cream:#fdf8f2;--white:#ffffff;--gray:#6b7280;--light:#f1f5f9;--danger:#ef4444;--success:#22c55e;--shadow:0 8px 32px rgba(11,30,61,.13);--radius:16px;--font-h:'Playfair Display',Georgia,serif;--font-b:'DM Sans',sans-serif;--transition:.35s cubic-bezier(.4,0,.2,1);} 
+    html{scroll-behavior:smooth;} 
+    body{font-family:var(--font-b);background:var(--cream);color:var(--navy);overflow-x:hidden;} 
+    #progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;z-index:9999;} 
+    nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(11,30,61,.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,146,42,.25);transition:var(--transition);} 
+    nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.3);} 
+    .nav-inner{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:70px;} 
+    .logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;} 
+    .logo-icon img{width:50px;height:50px;border-radius:8px;object-fit:cover;display:block;} 
+    .logo-text{color:var(--white);line-height:1.1;} 
+    .logo-text strong{font-family:var(--font-h);font-size:1.05rem;display:block;} 
+    .logo-text span{font-size:.7rem;color:var(--gold2);letter-spacing:.08em;text-transform:uppercase;} 
+    .nav-links{display:flex;align-items:center;gap:.25rem;list-style:none;} 
+    .nav-links a{display:block;padding:.5rem .9rem;color:rgba(255,255,255,.82);text-decoration:none;font-size:.88rem;font-weight:500;border-radius:8px;transition:var(--transition);} 
+    .nav-links a:hover,.nav-links a.active{color:var(--gold2);background:rgba(201,146,42,.12);} 
+    .nav-links .btn-nav{background:var(--gold);color:var(--navy)!important;font-weight:600;border-radius:8px;padding:.5rem 1.1rem;} 
+    .nav-links .btn-nav:hover{background:var(--gold2);} 
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.4rem;} 
+    .hamburger span{display:block;width:25px;height:2px;background:var(--white);border-radius:2px;transition:var(--transition);} 
+    .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);} 
+    .hamburger.open span:nth-child(2){opacity:0;} 
+    .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);} 
+    .mobile-menu{display:none;flex-direction:column;background:var(--navy2);padding:1rem 2rem 1.5rem;border-top:1px solid rgba(201,146,42,.2);} 
+    .mobile-menu a{padding:.75rem 0;color:rgba(255,255,255,.85);text-decoration:none;font-size:.95rem;border-bottom:1px solid rgba(255,255,255,.07);} 
+    .mobile-menu a:hover{color:var(--gold2);} 
+    .mobile-menu.open{display:flex;} 
+    .page-hero{padding-top:70px;background:linear-gradient(135deg,#071528 0%,#0d2347 55%,#122554 100%);position:relative;overflow:hidden;} 
+    .page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(201,146,42,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,146,42,.04) 1px,transparent 1px);background-size:60px 60px;} 
+    .page-hero-inner{max-width:1200px;margin:auto;padding:4rem 2rem 3rem;position:relative;z-index:1;text-align:center;} 
+    .breadcrumb{display:flex;justify-content:center;gap:.5rem;align-items:center;font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:1.25rem;} 
+    .breadcrumb a{color:var(--gold2);text-decoration:none;} 
+    .page-hero h1{font-family:var(--font-h);font-size:clamp(2rem,4vw,3rem);color:var(--white);margin-bottom:.75rem;} 
+    .page-hero p{color:rgba(255,255,255,.65);max-width:520px;margin:auto;font-size:1rem;line-height:1.7;} 
+    section{padding:5rem 2rem;} 
+    .container{max-width:1200px;margin:auto;} 
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;} 
+    .reveal.visible{opacity:1;transform:translateY(0);} 
+    
+    .contact-info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-bottom:4rem;} 
+    .ci-card{background:var(--white);border-radius:var(--radius);padding:2rem 1.5rem;border:1px solid rgba(0,0,0,.06);box-shadow:0 2px 10px rgba(0,0,0,.04);text-align:center;transition:var(--transition);} 
+    .ci-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:rgba(201,146,42,.25);} 
+    .ci-icon{font-size:2.2rem;margin-bottom:1rem;} 
+    .ci-card h4{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:.5rem;} 
+    .ci-card p,.ci-card a{font-size:.88rem;color:var(--gray);line-height:1.6;text-decoration:none;} 
+    .ci-card a:hover{color:var(--gold);} 
+    
+    .contact-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:3rem;align-items:start;} 
+    .faq-panel h3{font-family:var(--font-h);font-size:1.4rem;color:var(--navy);margin-bottom:1.5rem;} 
+    .faq-item{border:1px solid rgba(0,0,0,.08);border-radius:12px;margin-bottom:.75rem;overflow:hidden;} 
+    .faq-q{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;cursor:pointer;background:var(--white);transition:background .2s;} 
+    .faq-q:hover{background:#f8f9fa;} 
+    .faq-q span{font-size:.9rem;font-weight:600;color:var(--navy);} 
+    .faq-icon{font-size:1.1rem;color:var(--gold);transition:transform .3s;flex-shrink:0;} 
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;background:var(--white);} 
+    .faq-a p{padding:0 1.25rem 1rem;font-size:.85rem;color:var(--gray);line-height:1.7;} 
+    .faq-item.open .faq-a{max-height:200px;} 
+    .faq-item.open .faq-icon{transform:rotate(45deg);} 
+    .faq-item.open .faq-q{background:rgba(201,146,42,.05);} 
+    
+    .hours-card{background:var(--navy);border-radius:var(--radius);padding:1.75rem;margin-top:1.5rem;} 
+    .hours-card h4{color:var(--white);font-size:1rem;font-weight:600;margin-bottom:1rem;} 
+    .hour-row{display:flex;justify-content:space-between;padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:.85rem;} 
+    .hour-row:last-child{border:none;} 
+    .hour-day{color:rgba(255,255,255,.65);} 
+    .hour-time{color:var(--gold2);font-weight:600;} 
+    .hour-row.closed .hour-time{color:rgba(255,255,255,.3);} 
+    
+    .contact-form-card{background:var(--white);border-radius:20px;padding:2.5rem;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.05);} 
+    .contact-form-card h3{font-family:var(--font-h);font-size:1.4rem;color:var(--navy);margin-bottom:.35rem;} 
+    .contact-form-card > p{color:var(--gray);font-size:.88rem;margin-bottom:2rem;} 
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;} 
+    .form-group{margin-bottom:1.25rem;} 
+    .form-group label{display:block;font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:.5rem;} 
+    .form-group label .req{color:var(--danger);} 
+    .form-control{width:100%;padding:.75rem 1rem;border:1.5px solid #e2e8f0;border-radius:10px;font-family:var(--font-b);font-size:.9rem;color:var(--navy);background:var(--white);transition:border-color .25s,box-shadow .25s;outline:none;} 
+    .form-control:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,146,42,.15);} 
+    textarea.form-control{resize:vertical;min-height:140px;} 
+    .field-error{font-size:.75rem;color:var(--danger);margin-top:.35rem;display:none;} 
+    .field-error.show{display:block;} 
+    
+    .subject-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem;} 
+    .chip{padding:.4rem .9rem;border:1.5px solid #e2e8f0;border-radius:999px;font-size:.78rem;font-weight:600;cursor:pointer;transition:var(--transition);color:var(--gray);} 
+    .chip:hover,.chip.active{border-color:var(--gold);background:rgba(201,146,42,.08);color:var(--gold);} 
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:10px;font-size:.95rem;font-weight:600;cursor:pointer;border:none;text-decoration:none;transition:var(--transition);font-family:var(--font-b);} 
+    .btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);box-shadow:0 4px 20px rgba(201,146,42,.4);} 
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,146,42,.5);} 
+    .btn-full{width:100%;justify-content:center;} 
+    
+    .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:var(--success);color:var(--white);padding:1rem 2rem;border-radius:12px;font-weight:600;font-size:.9rem;z-index:9999;transition:transform .4s ease;box-shadow:0 4px 20px rgba(0,0,0,.2);} 
+    .toast.show{transform:translateX(-50%) translateY(0);} 
+    
+    footer{background:#060f1e;color:rgba(255,255,255,.6);padding:4rem 2rem 2rem;} 
+    .footer-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;} 
+    .footer-brand p{font-size:.88rem;line-height:1.8;margin-top:1rem;max-width:260px;} 
+    .footer-col h4{color:var(--white);font-size:.9rem;font-weight:600;margin-bottom:1.2rem;} 
+    .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem;} 
+    .footer-col a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.85rem;transition:color .2s;} 
+    .footer-col a:hover{color:var(--gold2);} 
+    .footer-bottom{max-width:1200px;margin:auto;border-top:1px solid rgba(255,255,255,.08);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:.8rem;} 
+    .socials{display:flex;gap:.75rem;} 
+    .social-btn{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);display:grid;place-items:center;cursor:pointer;color:rgba(255,255,255,.6);text-decoration:none;font-size:.9rem;transition:var(--transition);} 
+    .social-btn:hover{background:var(--gold);color:var(--navy);border-color:var(--gold);} 
+    #back-top{position:fixed;bottom:2rem;right:2rem;width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;color:var(--navy);font-size:1.2rem;cursor:pointer;z-index:999;box-shadow:0 4px 16px rgba(201,146,42,.4);transition:var(--transition);opacity:0;pointer-events:none;display:grid;place-items:center;} 
+    #back-top.visible{opacity:1;pointer-events:auto;} 
+    #back-top:hover{transform:translateY(-3px);} 
+    @media(max-width:900px){.contact-grid{grid-template-columns:1fr;}.footer-grid{grid-template-columns:1fr 1fr;gap:2rem;}.nav-links{display:none;}.hamburger{display:flex;}} 
+    @media(max-width:600px){.form-row{grid-template-columns:1fr;}.footer-grid{grid-template-columns:1fr;}.footer-bottom{flex-direction:column;text-align:center;}} 
+  </style> 
+</head> 
+<body> 
+  <div id="progress-bar"></div> 
+  <div class="toast" id="toast">✅ Message sent! We'll reply within 24 hours.</div> 
+  
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><img src="logo2.png" alt="NMPP Logo"></div>
+        <div class="logo-text">
+          <strong>NMPP | Nefas Mewucha Preparatory School</strong>
+          <span>ጥራት ያለው ትምህርት ለሁሉም</span>
+        </div>
+      </a>
+      <ul class="nav-links"> 
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li> 
+        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="location.html">Location</a></li> 
+        <li><a href="settings.html">Settings</a></li>
+        <li><a href="signup.html" class="btn-nav">Sign Up</a></li> 
+      </ul> 
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button> 
+    </div> 
+    <div class="mobile-menu" id="mobile-menu"> 
+      <a href="index.html">🏠 Home</a>
+      <a href="about.html">ℹ️ About Us</a> 
+      <a href="contact.html">✉️ Contact</a>
+      <a href="location.html">📍 Location</a> 
+      <a href="settings.html">⚙️ Settings</a>
+      <a href="signup.html">📝 Sign Up</a> 
+    </div> 
+  </nav>
+
+  <div class="page-hero"> 
+    <div class="page-hero-inner"> 
+      <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>Contact Us</span></div> 
+      <h1>Get In Touch</h1> 
+      <p>We're here to help. Reach out with questions about admissions, programs, or anything else — we'll respond promptly.</p> 
+    </div> 
+  </div>
+
+  <section> 
+    <div class="container"> 
+      <div class="contact-info-grid"> 
+        <div class="ci-card reveal"><div class="ci-icon">📍</div><h4>Visit Us</h4><p>Nefas Mewucha,<br>Amhara Region, Ethiopia</p></div> 
+        <div class="ci-card reveal"><div class="ci-icon">📞</div><h4>Call Us</h4><p><a href="tel:+251978864128">+251 978 864 128</a></p></div> 
+        <div class="ci-card reveal"><div class="ci-icon">✉️</div><h4>Email Us</h4><p><a href="mailto:maledemikiyas67@gmail.com">maledemikiyas67@gmail.com</a></p></div> 
+        <div class="ci-card reveal"><div class="ci-icon">⏰</div><h4>Office Hours</h4><p>Mon – Fri: 8:00 AM – 5:00 PM<br>Sat: 8:00 AM – 12:00 PM</p></div> 
+      </div>
+
+      <div class="contact-grid"> 
+        <div> 
+          <div class="faq-panel reveal"> 
+            <h3>Frequently Asked Questions</h3> 
+            <div class="faq-item"> 
+              <div class="faq-q" onclick="toggleFaq(this)"><span>How do I apply for admission?</span><span class="faq-icon">+</span></div> 
+              <div class="faq-a"><p>Visit our <a href="signup.html" style="color:var(--gold)">Sign Up page</a> and complete the registration form.</p></div> 
+            </div> 
+            <div class="faq-item"> 
+              <div class="faq-q" onclick="toggleFaq(this)"><span>What documents are needed for enrollment?</span><span class="faq-icon">+</span></div> 
+              <div class="faq-a"><p>Grade 10 completion certificate, transcript, and passport photos.</p></div> 
+            </div> 
+            <div class="faq-item"> 
+              <div class="faq-q" onclick="toggleFaq(this)"><span>Does the school offer digital learning?</span><span class="faq-icon">+</span></div> 
+              <div class="faq-a"><p>Yes, we use e-learning and cloud computing solutions to support secondary education.</p></div> 
+            </div> 
+          </div> 
+
+          <div class="hours-card reveal"> 
+            <h4>📅 Office Hours</h4> 
+            <div class="hour-row"><span class="hour-day">Monday – Friday</span><span class="hour-time">8:00 AM – 5:00 PM</span></div> 
+            <div class="hour-row"><span class="hour-day">Saturday</span><span class="hour-time">8:00 AM – 12:00 PM</span></div> 
+            <div class="hour-row closed"><span class="hour-day">Sunday</span><span class="hour-time">Closed</span></div> 
+          </div> 
+        </div>
+
+        <div class="contact-form-card reveal"> 
+          <h3>Send Us a Message</h3> 
+          <p>Fill in the form below and our team will get back to you promptly.</p> 
+          <p style="font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:.75rem;">What is your enquiry about?</p> 
+          <div class="subject-chips"> 
+            <div class="chip active" onclick="selectChip(this)">Admissions</div> 
+            <div class="chip" onclick="selectChip(this)">Curriculum</div> 
+            <div class="chip" onclick="selectChip(this)">Cloud Learning</div> 
+            <div class="chip" onclick="selectChip(this)">Other</div> 
+          </div> 
+          <div class="form-row"> 
+            <div class="form-group"> 
+              <label>First Name <span class="req">*</span></label> 
+              <input type="text" class="form-control" id="c-fname" placeholder="First name"> 
+              <div class="field-error" id="c-fname-err">Required.</div> 
+            </div> 
+            <div class="form-group"> 
+              <label>Last Name <span class="req">*</span></label> 
+              <input type="text" class="form-control" id="c-lname" placeholder="Last name"> 
+              <div class="field-error" id="c-lname-err">Required.</div> 
+            </div> 
+          </div> 
+          <div class="form-group"> 
+            <label>Email Address <span class="req">*</span></label> 
+            <input type="email" class="form-control" id="c-email" placeholder="your@email.com"> 
+            <div class="field-error" id="c-email-err">Enter a valid email.</div> 
+          </div> 
+          <div class="form-group"> 
+            <label>Phone Number</label> 
+            <input type="tel" class="form-control" placeholder="+251 900 000000"> 
+          </div> 
+          <div class="form-group"> 
+            <label>Your Message <span class="req">*</span></label> 
+            <textarea class="form-control" id="c-msg" placeholder="Tell us how we can help you…"></textarea> 
+            <div class="field-error" id="c-msg-err">Please enter a message.</div> 
+          </div> 
+          <button class="btn btn-primary btn-full" onclick="sendMsg()">📨 Send Message</button> 
+        </div> 
+      </div> 
+    </div> 
+  </section> 
+
+  <footer> 
+    <div class="footer-grid"> 
+      <div class="footer-brand"> 
+        <a href="index.html" class="logo"><div class="logo-text"><strong>NMPP School</strong><span>Excellence in Education</span></div></a> 
+        <p>Nurturing tomorrow's leaders through quality education and commitment to excellence.</p> 
+      </div> 
+      <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="location.html">Location</a></li><li><a href="settings.html">Settings</a></li></ul></div> 
+      <div class="footer-col"><h4>Admissions</h4><ul><li><a href="signup.html">Apply Online</a></li><li><a href="#">Requirements</a></li></ul></div> 
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:maledemikiyas67@gmail.com">maledemikiyas67@gmail.com</a></li><li><a href="tel:+251978864128">+251 978 864 128</a></li></ul></div> 
+    </div> 
+    <div class="footer-bottom"> 
+      <span>© 2026 NMPP School. All rights reserved.</span> 
+      <div class="socials"><a class="social-btn" href="#">f</a><a class="social-btn" href="#">𝕏</a><a class="social-btn" href="#">📸</a></div> 
+    </div> 
+  </footer> 
+
+  <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button> 
+
+  <script> 
+    const bar=document.getElementById('progress-bar'),backTop=document.getElementById('back-top'); 
+    window.addEventListener('scroll',()=>{ 
+      const s=window.scrollY,t=document.documentElement.scrollHeight-window.innerHeight; 
+      bar.style.width=(s/t*100)+'%'; 
+      backTop.classList.toggle('visible',s>300); 
+      document.getElementById('navbar').classList.toggle('scrolled',s>30); 
+    }); 
+    document.getElementById('hamburger').addEventListener('click',function(){ 
+      this.classList.toggle('open'); 
+      document.getElementById('mobile-menu').classList.toggle('open'); 
+    }); 
+    const revObs=new IntersectionObserver((entries)=>{ 
+      entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);revObs.unobserve(e.target);}}); 
+    },{threshold:.1}); 
+    document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el)); 
+
+    function toggleFaq(el){const item=el.parentElement;item.classList.toggle('open');} 
+    function selectChip(el){document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');} 
+    function sendMsg(){ 
+      let valid=true; 
+      function chk(id,errId,cond){ 
+        const el=document.getElementById(id),er=document.getElementById(errId); 
+        if(!cond){el.classList.add('error');er.classList.add('show');valid=false;} 
+        else{el.classList.remove('error');er.classList.remove('show');} 
+      } 
+      chk('c-fname','c-fname-err',document.getElementById('c-fname').value.trim().length>0); 
+      chk('c-lname','c-lname-err',document.getElementById('c-lname').value.trim().length>0); 
+      chk('c-email','c-email-err',/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('c-email').value)); 
+      chk('c-msg','c-msg-err',document.getElementById('c-msg').value.trim().length>10); 
+      if(!valid)return; 
+      const toast=document.getElementById('toast'); 
+      toast.classList.add('show'); 
+      setTimeout(()=>toast.classList.remove('show'),4000); 
+      document.getElementById('c-fname').value=''; 
+      document.getElementById('c-lname').value=''; 
+      document.getElementById('c-email').value=''; 
+      document.getElementById('c-msg').value=''; 
+    } 
+  </script> 
+</body> 
+</html>

@@ -1,0 +1,638 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+<title>Nefas Mewucha Preparatory – Settings</title> 
+<link rel="preconnect" href="https://fonts.googleapis.com"> 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"> 
+<style> 
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;} 
+:root{ --navy:#0b1e3d;--navy2:#122554;--gold:#c9922a;--gold2:#f0b940; --cream:#fdf8f2;--white:#ffffff;--gray:#6b7280;--light:#f1f5f9; --danger:#ef4444;--success:#22c55e; --shadow:0 8px 32px rgba(11,30,61,.13);--radius:16px; --font-h:'Playfair Display',Georgia,serif;--font-b:'DM Sans',sans-serif; --transition:.35s cubic-bezier(.4,0,.2,1); --bg:var(--cream);--surface:var(--white);--text:var(--navy);--border:#e2e8f0;--sub:var(--gray); } 
+html{scroll-behavior:smooth;} 
+body{font-family:var(--font-b);background:var(--bg);color:var(--text);overflow-x:hidden;transition:background .4s,color .4s;} 
+/* DARK MODE */ 
+body.dark{ --bg:#0a0f1a;--surface:#111827;--text:#f1f5f9;--border:#1f2937;--sub:#9ca3af; --light:#1f2937; } 
+body.dark .logo-text strong,body.dark .logo-text span{color:inherit;} 
+body.dark .form-control{background:#1f2937;color:#f1f5f9;border-color:#374151;} 
+body.dark .form-control:focus{border-color:var(--gold);} 
+body.dark .settings-card{background:var(--surface);border-color:var(--border);} 
+body.dark .sidebar-link{color:var(--sub);} 
+body.dark .sidebar-link:hover,body.dark .sidebar-link.active{background:rgba(201,146,42,.12);color:var(--gold2);} 
+body.dark .toggle-track{background:#374151;} 
+body.dark select.form-control option{background:#1f2937;} 
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;z-index:9999;} 
+/* NAV */ 
+nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(11,30,61,.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,146,42,.25);transition:var(--transition);} 
+nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.3);} 
+.nav-inner{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:70px;} 
+.logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;} 
+.logo-icon img{width:42px;height:42px;border-radius:10px;object-fit:cover;display:block;} 
+.logo-text{color:var(--white);line-height:1.1;} 
+.logo-text strong{font-family:var(--font-h);font-size:1.15rem;display:block;} 
+.logo-text span{font-size:.7rem;color:var(--gold2);letter-spacing:.08em;text-transform:uppercase;} 
+.nav-links{display:flex;align-items:center;gap:.25rem;list-style:none;} 
+.nav-links a{display:block;padding:.5rem .9rem;color:rgba(255,255,255,.82);text-decoration:none;font-size:.88rem;font-weight:500;border-radius:8px;transition:var(--transition);} 
+.nav-links a:hover,.nav-links a.active{color:var(--gold2);background:rgba(201,146,42,.12);} 
+.nav-links .btn-nav{background:var(--gold);color:var(--navy)!important;font-weight:600;border-radius:8px;padding:.5rem 1.1rem;} 
+.nav-links .btn-nav:hover{background:var(--gold2);} 
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.4rem;} 
+.hamburger span{display:block;width:25px;height:2px;background:var(--white);border-radius:2px;transition:var(--transition);} 
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);} 
+.hamburger.open span:nth-child(2){opacity:0;} 
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);} 
+.mobile-menu{display:none;flex-direction:column;background:var(--navy2);padding:1rem 2rem 1.5rem;border-top:1px solid rgba(201,146,42,.2);} 
+.mobile-menu a{padding:.75rem 0;color:rgba(255,255,255,.85);text-decoration:none;font-size:.95rem;border-bottom:1px solid rgba(255,255,255,.07);} 
+.mobile-menu a:hover{color:var(--gold2);} 
+.mobile-menu.open{display:flex;} 
+/* PAGE HERO */ 
+.page-hero{padding-top:70px;background:linear-gradient(135deg,#071528 0%,#0d2347 55%,#122554 100%);position:relative;overflow:hidden;} 
+.page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(201,146,42,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,146,42,.04) 1px,transparent 1px);background-size:60px 60px;} 
+.page-hero-inner{max-width:1200px;margin:auto;padding:4rem 2rem 3rem;position:relative;z-index:1;text-align:center;} 
+.breadcrumb{display:flex;justify-content:center;gap:.5rem;align-items:center;font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:1.25rem;} 
+.breadcrumb a{color:var(--gold2);text-decoration:none;} 
+.page-hero h1{font-family:var(--font-h);font-size:clamp(2rem,4vw,3rem);color:var(--white);margin-bottom:.75rem;} 
+.page-hero p{color:rgba(255,255,255,.65);max-width:520px;margin:auto;font-size:1rem;line-height:1.7;} 
+/* SETTINGS LAYOUT */ 
+.settings-section{padding:4rem 2rem 6rem;} 
+.settings-container{max-width:1100px;margin:auto;display:grid;grid-template-columns:260px 1fr;gap:2.5rem;align-items:start;} 
+/* SIDEBAR */ 
+.settings-sidebar{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:1.5rem;position:sticky;top:90px;transition:background .4s,border-color .4s;} 
+.sidebar-user{display:flex;align-items:center;gap:1rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.25rem;} 
+.user-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:grid;place-items:center;font-size:1.4rem;font-weight:900;color:var(--navy);flex-shrink:0;} 
+.user-name{font-weight:700;font-size:.95rem;color:var(--text);} 
+.user-role{font-size:.75rem;color:var(--sub);margin-top:.15rem;} 
+.sidebar-nav{display:flex;flex-direction:column;gap:.25rem;} 
+.sidebar-link{display:flex;align-items:center;gap:.75rem;padding:.7rem 1rem;border-radius:10px;font-size:.88rem;font-weight:500;cursor:pointer;border:none;background:transparent;width:100%;text-align:left;color:var(--sub);transition:var(--transition);} 
+.sidebar-link:hover,.sidebar-link.active{background:rgba(201,146,42,.1);color:var(--gold);} 
+.sidebar-link .sl-icon{font-size:1rem;flex-shrink:0;} 
+.sidebar-link.danger:hover{background:rgba(239,68,68,.08);color:var(--danger);} 
+/* MAIN PANEL */ 
+.settings-main{display:flex;flex-direction:column;gap:1.5rem;} 
+/* CARDS */ 
+.settings-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:background .4s,border-color .4s;} 
+.card-header{padding:1.5rem 2rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;} 
+.card-header h3{font-family:var(--font-h);font-size:1.2rem;color:var(--text);} 
+.card-header p{font-size:.8rem;color:var(--sub);margin-top:.2rem;} 
+.card-body{padding:2rem;} 
+.settings-panel{display:none;} 
+.settings-panel.active{display:block;animation:fadeIn .3s ease;} 
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}} 
+/* FORM CONTROLS */ 
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;} 
+.form-group{margin-bottom:1.25rem;} 
+.form-group label{display:block;font-size:.82rem;font-weight:600;color:var(--text);margin-bottom:.5rem;opacity:.9;} 
+.form-control{width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-family:var(--font-b);font-size:.9rem;color:var(--text);background:var(--surface);transition:border-color .25s,box-shadow .25s;outline:none;} 
+.form-control:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,146,42,.15);} 
+select.form-control{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem;cursor:pointer;} 
+textarea.form-control{resize:vertical;min-height:100px;} 
+/* AVATAR PICKER */ 
+.avatar-section{display:flex;align-items:center;gap:2rem;margin-bottom:2rem;padding:1.5rem;background:var(--light);border-radius:14px;} 
+.avatar-large{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:grid;place-items:center;font-size:2.2rem;font-weight:900;color:var(--navy);flex-shrink:0;} 
+.avatar-actions{display:flex;flex-direction:column;gap:.5rem;} 
+.avatar-actions p{font-size:.8rem;color:var(--sub);} 
+/* TOGGLE SWITCH */ 
+.setting-row{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 0;border-bottom:1px solid var(--border);} 
+.setting-row:last-child{border:none;padding-bottom:0;} 
+.setting-row:first-child{padding-top:0;} 
+.setting-info h4{font-size:.92rem;font-weight:600;color:var(--text);margin-bottom:.2rem;} 
+.setting-info p{font-size:.8rem;color:var(--sub);line-height:1.5;max-width:380px;} 
+.toggle-wrap{position:relative;flex-shrink:0;} 
+.toggle-input{position:absolute;opacity:0;width:0;height:0;} 
+.toggle-track{display:block;width:48px;height:26px;background:#d1d5db;border-radius:999px;cursor:pointer;transition:background .3s;} 
+.toggle-thumb{position:absolute;top:3px;left:3px;width:20px;height:20px;background:var(--white);border-radius:50%;transition:left .3s;box-shadow:0 1px 4px rgba(0,0,0,.2);} 
+.toggle-input:checked + .toggle-track{background:var(--gold);} 
+.toggle-input:checked ~ .toggle-thumb{left:25px;} 
+.toggle-container{position:relative;width:48px;height:26px;} 
+/* THEME CARDS */ 
+.theme-options{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;} 
+.theme-card{border:2px solid var(--border);border-radius:14px;padding:1rem;cursor:pointer;text-align:center;transition:var(--transition);} 
+.theme-card:hover{border-color:var(--gold);} 
+.theme-card.selected{border-color:var(--gold);background:rgba(201,146,42,.07);} 
+.theme-preview{height:60px;border-radius:8px;margin-bottom:.75rem;display:flex;overflow:hidden;} 
+.tp-light .theme-preview{background:#fdf8f2;} 
+.tp-dark .theme-preview{background:#0a0f1a;} 
+.tp-gold .theme-preview{background:linear-gradient(135deg,var(--gold),var(--gold2));} 
+.preview-nav{width:100%;height:14px;background:var(--navy);border-radius:4px 4px 0 0;} 
+.tp-dark .preview-nav{background:#1f2937;} 
+.tp-gold .preview-nav{background:rgba(11,30,61,.8);} 
+.theme-name{font-size:.85rem;font-weight:700;color:var(--text);} 
+.theme-check{font-size:.8rem;color:var(--gold);margin-top:.25rem;height:1.1rem;} 
+/* FONT SIZE */ 
+.font-slider{width:100%;margin-top:.75rem;} 
+input[type=range]{width:100%;accent-color:var(--gold);cursor:pointer;} 
+.font-preview{margin-top:.75rem;padding:1rem;background:var(--light);border-radius:10px;transition:font-size .3s;} 
+.font-preview p{color:var(--sub);line-height:1.6;} 
+/* COLOR ACCENT */ 
+.accent-swatches{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:.75rem;} 
+.swatch{width:36px;height:36px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:var(--transition);} 
+.swatch.selected{border-color:var(--text);transform:scale(1.15);} 
+/* NOTIFICATION ITEMS */ 
+.notif-group{margin-bottom:1.5rem;} 
+.notif-group-title{font-size:.75rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem;} 
+/* PRIVACY */ 
+.privacy-level{display:flex;gap:.75rem;margin-top:.75rem;flex-wrap:wrap;} 
+.pl-option{flex:1;min-width:100px;border:1.5px solid var(--border);border-radius:12px;padding:1rem;cursor:pointer;text-align:center;transition:var(--transition);} 
+.pl-option:hover,.pl-option.selected{border-color:var(--gold);background:rgba(201,146,42,.07);} 
+.pl-icon{font-size:1.4rem;margin-bottom:.35rem;} 
+.pl-label{font-size:.78rem;font-weight:700;color:var(--text);} 
+/* SECURITY */ 
+.security-status{display:flex;align-items:center;gap:.75rem;padding:1rem 1.25rem;border-radius:12px;margin-bottom:1.25rem;} 
+.ss-good{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);} 
+.ss-warn{background:rgba(234,179,8,.1);border:1px solid rgba(234,179,8,.25);} 
+.ss-icon{font-size:1.5rem;} 
+.ss-text h4{font-size:.9rem;font-weight:700;color:var(--text);} 
+.ss-text p{font-size:.78rem;color:var(--sub);} 
+/* DANGER ZONE */ 
+.danger-zone{border:1px solid rgba(239,68,68,.25);border-radius:var(--radius);overflow:hidden;} 
+.danger-zone .card-header{background:rgba(239,68,68,.06);border-color:rgba(239,68,68,.2);} 
+.danger-zone .card-header h3{color:var(--danger);} 
+.danger-action{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 0;border-bottom:1px solid var(--border);} 
+.danger-action:last-child{border:none;padding-bottom:0;} 
+.danger-action:first-child{padding-top:0;} 
+.danger-action h4{font-size:.9rem;font-weight:600;color:var(--text);} 
+.danger-action p{font-size:.78rem;color:var(--sub);margin-top:.15rem;max-width:320px;} 
+/* BUTTONS */ 
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.5rem;border-radius:10px;font-size:.88rem;font-weight:600;cursor:pointer;border:none;text-decoration:none;transition:var(--transition);font-family:var(--font-b);} 
+.btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);box-shadow:0 4px 16px rgba(201,146,42,.35);} 
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,146,42,.45);} 
+.btn-secondary{background:var(--light);color:var(--text);border:1px solid var(--border);} 
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold);} 
+.btn-danger{background:rgba(239,68,68,.1);color:var(--danger);border:1px solid rgba(239,68,68,.25);} 
+.btn-danger:hover{background:var(--danger);color:var(--white);} 
+.btn-sm{padding:.5rem 1rem;font-size:.8rem;} 
+.card-footer{padding:1.25rem 2rem;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:.75rem;background:var(--light);} 
+body.dark .card-footer{background:rgba(255,255,255,.03);} 
+/* TOAST */ 
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:var(--success);color:var(--white);padding:.9rem 1.75rem;border-radius:12px;font-weight:600;font-size:.88rem;z-index:9999;transition:transform .4s ease;box-shadow:0 4px 20px rgba(0,0,0,.2);white-space:nowrap;} 
+.toast.show{transform:translateX(-50%) translateY(0);} 
+/* MODAL */ 
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px);} 
+.modal-overlay.show{display:flex;} 
+.modal{background:var(--surface);border-radius:20px;padding:2.5rem;max-width:420px;width:90%;text-align:center;animation:fadeIn .3s ease;} 
+.modal h3{font-family:var(--font-h);font-size:1.4rem;color:var(--text);margin-bottom:.75rem;} 
+.modal p{color:var(--sub);font-size:.9rem;line-height:1.65;margin-bottom:2rem;} 
+.modal-actions{display:flex;gap:.75rem;justify-content:center;} 
+/* FOOTER */ 
+footer{background:#060f1e;color:rgba(255,255,255,.6);padding:2.5rem 2rem;text-align:center;} 
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:1.5rem;margin-bottom:1rem;} 
+.footer-links a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.85rem;transition:color .2s;} 
+.footer-links a:hover{color:var(--gold2);} 
+#back-top{position:fixed;bottom:2rem;right:2rem;width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;color:var(--navy);font-size:1.2rem;cursor:pointer;z-index:999;box-shadow:0 4px 16px rgba(201,146,42,.4);transition:var(--transition);opacity:0;pointer-events:none;display:grid;place-items:center;} 
+#back-top.visible{opacity:1;pointer-events:auto;} 
+#back-top:hover{transform:translateY(-3px);} 
+@media(max-width:900px){.settings-container{grid-template-columns:1fr;}.settings-sidebar{position:static;}.nav-links{display:none;}.hamburger{display:flex;}} 
+@media(max-width:600px){.form-row{grid-template-columns:1fr;}.theme-options{grid-template-columns:1fr 1fr;}.privacy-level{flex-direction:column;}} 
+</style> 
+</head> 
+<body> 
+<div id="progress-bar"></div> 
+<div class="toast" id="toast">✅ Settings saved successfully!</div> 
+<!-- CONFIRM MODAL --> 
+<div class="modal-overlay" id="confirm-modal"> 
+  <div class="modal"> 
+    <div style="font-size:2.5rem;margin-bottom:1rem;">⚠️</div> 
+    <h3 id="modal-title">Are you sure?</h3> 
+    <p id="modal-msg">This action cannot be undone.</p> 
+    <div class="modal-actions"> 
+      <button class="btn btn-secondary" onclick="closeModal()">Cancel</button> 
+      <button class="btn btn-danger" id="modal-confirm-btn">Confirm</button> 
+    </div> 
+  </div> 
+</div> 
+<nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><img src="logo2.png" alt="Logo"></div>
+        <div class="logo-text">
+          <strong>NMPP | Nefas Mewucha Preparatory School</strong>
+          <span>ጥራት ያለዉ ትምህርት ለሁሉም </span>
+        </div>
+      </a>
+      <ul class="nav-links"> <li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li> <li><a href="contact.html">Contact</a></li><li><a href="location.html">Location</a></li> <li><a href="settings.html" class="active">Settings</a></li><li><a href="signup.html" class="btn-nav">Sign Up</a></li> </ul> 
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button> 
+    </div> 
+    <div class="mobile-menu" id="mobile-menu"> 
+      <a href="index.html">🏠 Home</a><a href="about.html">ℹ️ About Us</a> 
+      <a href="contact.html">✉️ Contact</a><a href="location.html">📍 Location</a> 
+      <a href="settings.html">⚙️ Settings</a><a href="signup.html">📝 Sign Up</a> 
+    </div> 
+</nav> 
+<div class="page-hero"> 
+  <div class="page-hero-inner"> 
+    <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>Settings</span></div> 
+    <h1>Settings</h1> 
+    <p>Manage your account, personalise your experience, and control your privacy preferences.</p> 
+  </div> 
+</div> 
+<section class="settings-section"> 
+  <div class="settings-container"> 
+    <!-- SIDEBAR --> 
+    <div class="settings-sidebar"> 
+      <div class="sidebar-user"> 
+        <div class="user-avatar">A</div> 
+        <div> 
+          <div class="user-name">Amara Johnson</div> 
+          <div class="user-role">Student · Grade 10</div> 
+        </div> 
+      </div> 
+      <div class="sidebar-nav"> 
+        <button class="sidebar-link active" onclick="showPanel('profile',this)"><span class="sl-icon">👤</span> Profile</button> 
+        <button class="sidebar-link" onclick="showPanel('appearance',this)"><span class="sl-icon">🎨</span> Appearance</button> 
+        <button class="sidebar-link" onclick="showPanel('notifications',this)"><span class="sl-icon">🔔</span> Notifications</button> 
+        <button class="sidebar-link" onclick="showPanel('privacy',this)"><span class="sl-icon">🔒</span> Privacy</button> 
+        <button class="sidebar-link" onclick="showPanel('security',this)"><span class="sl-icon">🛡️</span> Security</button> 
+        <button class="sidebar-link" onclick="showPanel('language',this)"><span class="sl-icon">🌐</span> Language & Region</button> 
+        <button class="sidebar-link" onclick="showPanel('accessibility',this)"><span class="sl-icon">♿</span> Accessibility</button> 
+        <div style="height:1px;background:var(--border);margin:.75rem 0;"></div> 
+        <button class="sidebar-link danger" onclick="confirmAction('logout','Log out of your account? You will need to sign in again.','Log Out')"><span class="sl-icon">🚪</span> Log Out</button> 
+      </div> 
+    </div> 
+    <!-- MAIN --> 
+    <div class="settings-main"> 
+      <!-- ===== PROFILE ===== --> 
+      <div class="settings-panel active" id="panel-profile"> 
+        <div class="settings-card"> 
+          <div class="card-header"><div><h3>Profile Information</h3><p>Update your personal details and public profile.</p></div></div> 
+          <div class="card-body"> 
+            <div class="avatar-section"> 
+              <div class="avatar-large">A</div> 
+              <div class="avatar-actions"> 
+                <button class="btn btn-secondary btn-sm">📷 Change Photo</button> 
+                <button class="btn btn-danger btn-sm">🗑️ Remove Photo</button> 
+                <p>JPG, PNG or GIF — Max 2MB</p> 
+              </div> 
+            </div> 
+            <div class="form-row"> 
+              <div class="form-group"><label>First Name</label><input type="text" class="form-control" value="Amara"></div> 
+              <div class="form-group"><label>Last Name</label><input type="text" class="form-control" value="Johnson"></div> 
+            </div> 
+            <div class="form-row"> 
+              <div class="form-group"><label>Student ID</label><input type="text" class="form-control" value="NMP-2025-10045" readonly style="opacity:.6;cursor:not-allowed;"></div> 
+              <div class="form-group"><label>Grade / Class</label><input type="text" class="form-control" value="Grade 10 – Science" readonly style="opacity:.6;cursor:not-allowed;"></div> 
+            </div> 
+            <div class="form-group"><label>Email Address</label><input type="email" class="form-control" value="amara.johnson@nefas.edu"></div> 
+            <div class="form-row"> 
+              <div class="form-group"><label>Phone Number</label><input type="tel" class="form-control" value="+1 234 567 8910"></div> 
+              <div class="form-group"><label>Date of Birth</label><input type="date" class="form-control" value="2009-04-15"></div> 
+            </div> 
+            <div class="form-group"><label>Bio / About Me</label><textarea class="form-control" placeholder="Tell us a little about yourself…">Future astrophysicist. Science club president. Loves reading and robotics.</textarea></div> 
+          </div> 
+          <div class="card-footer"><button class="btn btn-secondary">Discard</button><button class="btn btn-primary" onclick="saveSettings()">💾 Save Changes</button></div> 
+        </div> 
+        <div class="settings-card"> 
+          <div class="card-header"><div><h3>Guardian Information</h3><p>Contact details of your parent or guardian on record.</p></div></div> 
+          <div class="card-body"> 
+            <div class="form-row"> 
+              <div class="form-group"><label>Guardian Name</label><input type="text" class="form-control" value="Mr. Emmanuel Johnson"></div> 
+              <div class="form-group"><label>Relationship</label><select class="form-control"><option selected>Father</option><option>Mother</option><option>Guardian</option></select></div> 
+            </div> 
+            <div class="form-row"> 
+              <div class="form-group"><label>Guardian Email</label><input type="email" class="form-control" value="emmanuel.johnson@email.com"></div> 
+              <div class="form-group"><label>Guardian Phone</label><input type="tel" class="form-control" value="+1 234 567 8900"></div> 
+            </div> 
+          </div> 
+          <div class="card-footer"><button class="btn btn-secondary">Discard</button><button class="btn btn-primary" onclick="saveSettings()">💾 Save Changes</button></div> 
+        </div> 
+      </div> 
+      <!-- ===== APPEARANCE ===== --> 
+      <div class="settings-panel" id="panel-appearance"> 
+        <div class="settings-card"> 
+          <div class="card-header"><div><h3>Theme</h3><p>Choose how Nefas Mewucha Preparatory looks for you.</p></div></div> 
+          <div class="card-body"> 
+            <div class="theme-options"> 
+              <div class="theme-card tp-light selected" id="theme-light" onclick="setTheme('light')"> 
+                <div class="theme-preview"><div class="preview-nav" style="width:100%;"></div></div> 
+                <div class="theme-name">☀️ Light</div> 
+                <div class="theme-check" id="chk-light">✔ Selected</div> 
+              </div> 
+              <div class="theme-card tp-dark" id="theme-dark" onclick="setTheme('dark')"> 
+                <div class="theme-preview"><div class="preview-nav" style="width:100%;background:#1f2937;"></div></div> 
+                <div class="theme-name">🌙 Dark</div> 
+                <div class="theme-check" id="chk-dark"></div> 
+              </div> 
+              <div class="theme-card tp-gold" id="theme-gold" onclick="setTheme('gold')"> 
+                <div class="theme-preview"><div class="preview-nav" style="width:100%;background:rgba(11,30,61,.7);"></div></div> 
+                <div class="theme-name">⭐ Gold</div> 
+                <div class="theme-check" id="chk-gold"></div> 
+              </div> 
+            </div> 
+            <div style="margin-top:2rem;"> 
+              <label style="font-size:.82rem;font-weight:600;color:var(--text);">Accent Colour</label> 
+              <div class="accent-swatches"> 
+                <div class="swatch selected" style="background:#c9922a;" onclick="pickAccent(this,'#c9922a','#f0b940')" title="Gold (default)"></div> 
+                <div class="swatch" style="background:#2563eb;" onclick="pickAccent(this,'#2563eb','#60a5fa')" title="Blue"></div> 
+                <div class="swatch" style="background:#16a34a;" onclick="pickAccent(this,'#16a34a','#4ade80')" title="Green"></div> 
+                <div class="swatch" style="background:#9333ea;" onclick="pickAccent(this,'#9333ea','#c084fc')" title="Purple"></div> 
+                <div class="swatch" style="background:#dc2626;" onclick="pickAccent(this,'#dc2626','#f87171')" title="Red"></div> 
+                <div class="swatch" style="background:#0891b2;" onclick="pickAccent(this,'#0891b2','#22d3ee')" title="Cyan"></div> 
+              </div> 
+            </div> 
+            <div style="margin-top:2rem;"> 
+              <label style="font-size:.82rem;font-weight:600;color:var(--text);">Font Size: <span id="font-val">16</span>px</label> 
+              <input type="range" class="font-slider" id="font-size-range" min="13" max="20" value="16" oninput="setFontSize(this.value)"> 
+              <div class="font-preview" id="font-preview"><p>The quick brown fox jumps over the lazy dog. Nefas Mewucha Preparatory – Excellence in Education.</p></div> 
+            </div> 
+          </div> 
+          <div class="card-footer"><button class="btn btn-secondary" onclick="resetAppearance()">↩ Reset Defaults</button><button class="btn btn-primary" onclick="saveSettings()">💾 Apply</button></div> 
+        </div> 
+      </div> 
+      <!-- ===== NOTIFICATIONS ===== --> 
+      <div class="settings-panel" id="panel-notifications"> 
+        <div class="settings-card"> 
+          <div class="card-header"><div><h3>Notification Preferences</h3><p>Choose what you want to be notified about.</p></div></div> 
+          <div class="card-body"> 
+            <div class="notif-group"> 
+              <div class="notif-group-title">Academic</div> 
+              <div class="setting-row"> 
+                <div class="setting-info"><h4>Exam Results</h4><p>Be notified when your exam results or grades are published.</p></div> 
+                <div class="toggle-container"><input type="checkbox" class="toggle-input" id="t1" checked><label class="toggle-track" for="t1"></label><div class="toggle-thumb"></div></div> 
+              </div> 
+              <div class="setting-row"> 
+                <div class="setting-info"><h4>Assignment Reminders</h4><p>Receive reminders 24 hours before an assignment is due.</p></div> 
+                <div class="toggle-container"><input type="checkbox" class="toggle-input" id="t2" checked><label class="toggle-track" for="t2"></label><div class="toggle-thumb"></div></div> 
+              </div> 
+              <div class="setting-row"> 
+                <div class="setting-info"><h4>Timetable Changes</h4><p>Get alerts when class schedules or timetables are updated.</p></div> 
+                <div class="toggle-container"><input type="checkbox" class="toggle-input" id="t3"><label class="toggle-track" for="t3"></label><div class="toggle-thumb"></div></div> 
+              </div> 
+            </div> 
+            <div class="notif-group"> 
+              <div class="notif-group-title">School Events</div> 
+              <div class="setting-row"> 
+                <div class="setting-info"><h4>Events & Announcements</h4><p>School-wide news, events, and important announcements.</p></div> 
+                <div class="toggle-container"><input type="checkbox" class="toggle-input" id="t4" checked><label class="toggle-track" for="t4"></label><div class="toggle-thumb"></div></div> 
+              </div> 
+              <div class="setting-row"> 
+                <div class="setting-info"><h4>Sports & Clubs</h4><p>Updates from clubs, sports teams, and extracurricular activities.</p></div> 
+                <div class="toggle-container"><input type="checkbox" class="toggle-input" id="t5" checked><label class="toggle-track" for="t5"></label><div class="toggle-thumb"></div></div> 
+              </div> 
+            </div> 
+            <div class="notif-group"> 
+              <div class="notif-group-title">Channels</div> 
+              <div class="setting-row"> 
+                <div class="setting-info"><h4>Email Notifications</h4><p>Receive notifications via your registered email address.</p></div> 
+                <div class="toggle-container"><input type="checkbox" class="toggle-input" id="t6" checked><label class="toggle-track" for="t6"></label><div class="toggle-thumb"></div></div> 
+              </div> 
+              <div class="setting-row"> 
+                <div class="setting-info"><h4>SMS Notifications</h4><p>Get SMS alerts for critical updates and emergency notices.</p></div> 
+                <div class="toggle-container"><input type="checkbox" class="toggle-input" id="t7"><label class="toggle-track" for="t7"></label><div class="toggle-thumb"></div></div> 
+              </div> 
+              <div class="setting-row"> 
+                <div class="setting-info"><h4>Push Notifications</h4><p>Browser or app push notifications for real-time alerts.</p></div> 
+                <div class="toggle-container"><input type="checkbox" class="toggle-input" id="t8" checked><label class="toggle-track" for="t8"></label><div class="toggle-thumb"></div></div> 
+              </div> 
+            </div> 
+          </div> 
+          <div class="card-footer"><button class="btn btn-primary" onclick="saveSettings()">💾 Save Preferences</button></div> 
+        </div> 
+      </div> 
+      <!-- ===== PRIVACY ===== --> 
+      <div class="settings-panel" id="panel-privacy"> 
+        <div class="settings-card"> 
+          <div class="card-header"><div><h3>Privacy Settings</h3><p>Control who can see your information.</p></div></div> 
+          <div class="card-body"> 
+            <div class="form-group"> 
+              <label style="font-size:.88rem;font-weight:600;color:var(--text);margin-bottom:.75rem;display:block;">Profile Visibility</label> 
+              <div class="privacy-level"> 
+                <div class="pl-option selected" onclick="pickPrivacy(this)"><div class="pl-icon">🌍</div><div class="pl-label">Public</div></div> 
+                <div class="pl-option" onclick="pickPrivacy(this)"><div class="pl-icon">🏫</div><div class="pl-label">School Only</div></div> 
+                <div class="pl-option" onclick="pickPrivacy(this)"><div class="pl-icon">🔒</div><div class="pl-label">Private</div></div> 
+              </div> 
+            </div> 
+            <div class="setting-row"> 
+              <div class="setting-info"><h4>Show in Student Directory</h4><p>Allow other students and teachers to find you in the school directory.</p></div> 
+              <div class="toggle-container"><input type="checkbox" class="toggle-input" id="p1" checked><label class="toggle-track" for="p1"></label><div class="toggle-thumb"></div></div> 
+            </div> 
+            <div class="setting-row"> 
+              <div class="setting-info"><h4>Share Academic Progress</h4><p>Allow your grades and progress reports to be visible to your guardian.</p></div> 
+              <div class="toggle-container"><input type="checkbox" class="toggle-input" id="p2" checked><label class="toggle-track" for="p2"></label><div class="toggle-thumb"></div></div> 
+            </div> 
+            <div class="setting-row"> 
+              <div class="setting-info"><h4>Allow Data Usage for Improvements</h4><p>Help us improve the school platform by sharing anonymous usage data.</p></div> 
+              <div class="toggle-container"><input type="checkbox" class="toggle-input" id="p3"><label class="toggle-track" for="p3"></label><div class="toggle-thumb"></div></div> 
+            </div> 
+            <div class="setting-row"> 
+              <div class="setting-info"><h4>Personalised Recommendations</h4><p>Receive personalised content and programme suggestions based on your activity.</p></div> 
+              <div class="toggle-container"><input type="checkbox" class="toggle-input" id="p4" checked><label class="toggle-track" for="p4"></label><div class="toggle-thumb"></div></div> 
+            </div> 
+          </div> 
+          <div class="card-footer"><button class="btn btn-primary" onclick="saveSettings()">💾 Save Privacy Settings</button></div> 
+        </div> 
+      </div> 
+      <!-- ===== SECURITY ===== --> 
+      <div class="settings-panel" id="panel-security"> 
+        <div class="settings-card"> 
+          <div class="card-header"><div><h3>Security</h3><p>Manage your account password and security settings.</p></div></div> 
+          <div class="card-body"> 
+            <div class="security-status ss-good"> 
+              <div class="ss-icon">🛡️</div> 
+              <div class="ss-text"><h4>Your account is secure</h4><p>Password last changed 30 days ago. Two-factor authentication is active.</p></div> 
+            </div> 
+            <div class="form-group"><label>Current Password</label><input type="password" class="form-control" placeholder="Enter current password"></div> 
+            <div class="form-row"> 
+              <div class="form-group"><label>New Password</label><input type="password" class="form-control" placeholder="New password (min 8 chars)"></div> 
+              <div class="form-group"><label>Confirm New Password</label><input type="password" class="form-control" placeholder="Repeat new password"></div> 
+            </div> 
+            <div class="setting-row"> 
+              <div class="setting-info"><h4>Two-Factor Authentication (2FA)</h4><p>Require a verification code in addition to your password when signing in.</p></div> 
+              <div class="toggle-container"><input type="checkbox" class="toggle-input" id="s1" checked><label class="toggle-track" for="s1"></label><div class="toggle-thumb"></div></div> 
+            </div> 
+            <div class="setting-row"> 
+              <div class="setting-info"><h4>Login Notifications</h4><p>Receive an email alert whenever your account is accessed from a new device.</p></div> 
+              <div class="toggle-container"><input type="checkbox" class="toggle-input" id="s2" checked><label class="toggle-track" for="s2"></label><div class="toggle-thumb"></div></div> 
+            </div> 
+            <div class="setting-row"> 
+              <div class="setting-info"><h4>Active Sessions</h4><p>You are currently signed in on 2 devices. <a href="#" style="color:var(--gold);font-weight:600;">View all sessions</a></p></div> 
+              <button class="btn btn-danger btn-sm" onclick="confirmAction('sessions','Sign out from all other devices?','Sign Out All')">Sign Out All</button> 
+            </div> 
+          </div> 
+          <div class="card-footer"><button class="btn btn-secondary">Discard</button><button class="btn btn-primary" onclick="saveSettings()">💾 Update Password</button></div> 
+        </div> 
+        <!-- DANGER ZONE --> 
+        <div class="settings-card danger-zone" style="margin-top:0;"> 
+          <div class="card-header"><div><h3>⚠️ Danger Zone</h3><p>Irreversible actions — proceed with caution.</p></div></div> 
+          <div class="card-body"> 
+            <div class="danger-action"> 
+              <div><h4>Deactivate Account</h4><p>Temporarily suspend access. Your data will be preserved and can be reactivated by the admin.</p></div> 
+              <button class="btn btn-danger btn-sm" onclick="confirmAction('deactivate','Deactivate your account? An admin will need to reactivate it.','Deactivate')">Deactivate</button> 
+            </div> 
+            <div class="danger-action"> 
+              <div><h4>Delete Account</h4><p>Permanently delete your account and all associated data. This action cannot be undone.</p></div> 
+              <button class="btn btn-danger btn-sm" onclick="confirmAction('delete','Permanently delete your account? ALL your data will be erased forever.','Delete Account')">Delete Account</button> 
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+      <!-- ===== LANGUAGE ===== --> 
+      <div class="settings-panel" id="panel-language"> 
+        <div class="settings-card"> 
+          <div class="card-header"><div><h3>Language & Region</h3><p>Set your preferred language, timezone and date format.</p></div></div> 
+          <div class="card-body"> 
+            <div class="form-row"> 
+              <div class="form-group"><label>Display Language</label> 
+                <select class="form-control"><option selected>English (US)</option><option>English (UK)</option><option>French</option><option>Arabic</option><option>Spanish</option><option>Mandarin Chinese</option><option>Portuguese</option></select> 
+              </div> 
+              <div class="form-group"><label>Country / Region</label> 
+                <select class="form-control"><option>United States</option><option>United Kingdom</option><option>Nigeria</option><option>Ghana</option><option>South Africa</option><option>France</option><option>Canada</option><option>Australia</option></select> 
+              </div> 
+            </div> 
+            <div class="form-row"> 
+              <div class="form-group"><label>Timezone</label> 
+                <select class="form-control"><option>UTC-05:00 Eastern Time</option><option>UTC-06:00 Central Time</option><option>UTC-07:00 Mountain Time</option><option>UTC-08:00 Pacific Time</option><option>UTC+00:00 GMT</option><option>UTC+01:00 West Africa Time</option><option>UTC+03:00 East Africa Time</option></select> 
+              </div> 
+              <div class="form-group"><label>Date Format</label> 
+                <select class="form-control"><option>MM/DD/YYYY</option><option>DD/MM/YYYY</option><option>YYYY-MM-DD</option></select> 
+              </div> 
+            </div> 
+            <div class="form-row"> 
+              <div class="form-group"><label>Time Format</label> 
+                <select class="form-control"><option>12-hour (AM/PM)</option><option>24-hour</option></select> 
+              </div> 
+              <div class="form-group"><label>Currency</label> 
+                <select class="form-control"><option>USD ($)</option><option>GBP (£)</option><option>EUR (€)</option><option>NGN (₦)</option><option>GHS (₵)</option></select> 
+              </div> 
+            </div> 
+          </div> 
+          <div class="card-footer"><button class="btn btn-secondary">Discard</button><button class="btn btn-primary" onclick="saveSettings()">💾 Save Language Settings</button></div> 
+        </div> 
+      </div> 
+      <!-- ===== ACCESSIBILITY ===== --> 
+      <div class="settings-panel" id="panel-accessibility"> 
+        <div class="settings-card"> 
+          <div class="card-header"><div><h3>Accessibility</h3><p>Make Nefas Mewucha Preparatory more accessible for your needs.</p></div></div> 
+          <div class="card-body"> 
+            <div class="setting-row"> 
+              <div class="setting-info"><h4>High Contrast Mode</h4><p>Increase contrast between text and background for better readability.</p></div> 
+              <div class="toggle-container"><input type="checkbox" class="toggle-input" id="a1"><label class="toggle-track" for="a1"></label><div class="toggle-thumb"></div></div> 
+            </div> 
+            <div class="setting-row"> 
+              <div class="setting-info"><h4>Reduce Motion</h4><p>Minimise animations and transitions across the site.</p></div> 
+              <div class="toggle-container"><input type="checkbox" class="toggle-input" id="a2"><label class="toggle-track" for="a2"></label><div class="toggle-thumb"></div></div> 
+            </div> 
+            <div class="setting-row"> 
+              <div class="setting-info"><h4>Screen Reader Optimisation</h4><p>Enhance compatibility with screen readers and assistive technology.</p></div> 
+              <div class="toggle-container"><input type="checkbox" class="toggle-input" id="a3"><label class="toggle-track" for="a3"></label><div class="toggle-thumb"></div></div> 
+            </div> 
+            <div class="setting-row"> 
+              <div class="setting-info"><h4>Large Click Targets</h4><p>Increase the size of buttons and interactive elements.</p></div> 
+              <div class="toggle-container"><input type="checkbox" class="toggle-input" id="a4"><label class="toggle-track" for="a4"></label><div class="toggle-thumb"></div></div> 
+            </div> 
+            <div class="setting-row"> 
+              <div class="setting-info"><h4>Keyboard Navigation</h4><p>Enable enhanced keyboard shortcuts for navigating the portal.</p></div> 
+              <div class="toggle-container"><input type="checkbox" class="toggle-input" id="a5" checked><label class="toggle-track" for="a5"></label><div class="toggle-thumb"></div></div> 
+            </div> 
+            <div style="margin-top:1.5rem;"> 
+              <label style="font-size:.82rem;font-weight:600;color:var(--text);">Text Spacing: <span id="spacing-val">Normal</span></label> 
+              <input type="range" style="width:100%;accent-color:var(--gold);margin-top:.5rem;" min="1" max="3" value="1" oninput="setSpacing(this.value)"> 
+            </div> 
+          </div> 
+          <div class="card-footer"><button class="btn btn-secondary" onclick="saveSettings()">↩ Reset Defaults</button><button class="btn btn-primary" onclick="saveSettings()">💾 Save Accessibility</button></div> 
+        </div> 
+      </div> 
+    </div><!-- end settings-main --> 
+  </div><!-- end settings-container --> 
+</section> 
+<footer> 
+  <div class="footer-links"> 
+    <a href="index.html">Home</a><a href="about.html">About Us</a> 
+    <a href="contact.html">Contact</a><a href="location.html">Location</a><a href="signup.html">Sign Up</a> 
+  </div> 
+  <p>© 2025 Nefas Mewucha Preparatory. All rights reserved.</p> 
+</footer> 
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button> 
+<script> 
+/* SCROLL */ 
+const bar=document.getElementById('progress-bar'),backTop=document.getElementById('back-top'); 
+window.addEventListener('scroll',()=>{ 
+  const s=window.scrollY,t=document.documentElement.scrollHeight-window.innerHeight; 
+  bar.style.width=(s/t*100)+'%'; 
+  backTop.classList.toggle('visible',s>300); 
+  document.getElementById('navbar').classList.toggle('scrolled',s>30); 
+}); 
+document.getElementById('hamburger').addEventListener('click',function(){this.classList.toggle('open');document.getElementById('mobile-menu').classList.toggle('open');}); 
+/* SIDEBAR NAV */ 
+function showPanel(id,btn){ 
+  document.querySelectorAll('.settings-panel').forEach(p=>p.classList.remove('active')); 
+  document.querySelectorAll('.sidebar-link').forEach(b=>b.classList.remove('active')); 
+  document.getElementById('panel-'+id).classList.add('active'); 
+  btn.classList.add('active'); 
+  window.scrollTo({top:300,behavior:'smooth'}); 
+} 
+/* TOAST */ 
+function showToast(msg){ 
+  const t=document.getElementById('toast'); 
+  t.textContent=msg||'✅ Settings saved!'; 
+  t.classList.add('show'); 
+  setTimeout(()=>t.classList.remove('show'),3500); 
+} 
+function saveSettings(){showToast('✅ Settings saved successfully!');} 
+/* THEME */ 
+let currentTheme='light'; 
+function setTheme(theme){ 
+  currentTheme=theme; 
+  const body=document.body; 
+  body.classList.remove('dark'); 
+  document.querySelectorAll('.theme-card').forEach(c=>c.classList.remove('selected')); 
+  document.querySelectorAll('.theme-check').forEach(c=>c.textContent=''); 
+  document.getElementById('theme-'+theme).classList.add('selected'); 
+  document.getElementById('chk-'+theme).textContent='✔ Selected'; 
+  if(theme==='dark'){ 
+    body.classList.add('dark'); 
+  } 
+  if(theme==='gold'){ 
+    document.documentElement.style.setProperty('--bg','#1a0e00'); 
+    document.documentElement.style.setProperty('--surface','#231505'); 
+    document.documentElement.style.setProperty('--text','#fff8ed'); 
+  } else { 
+    document.documentElement.style.removeProperty('--bg'); 
+    document.documentElement.style.removeProperty('--surface'); 
+    document.documentElement.style.removeProperty('--text'); 
+  } 
+  showToast('🎨 Theme updated!'); 
+} 
+/* ACCENT */ 
+function pickAccent(el,c1,c2){ 
+  document.querySelectorAll('.swatch').forEach(s=>s.classList.remove('selected')); 
+  el.classList.add('selected'); 
+  document.documentElement.style.setProperty('--gold',c1); 
+  document.documentElement.style.setProperty('--gold2',c2); 
+  showToast('🎨 Accent colour applied!'); 
+} 
+/* FONT SIZE */ 
+function setFontSize(v){ 
+  document.getElementById('font-val').textContent=v; 
+  document.getElementById('font-preview').style.fontSize=v+'px'; 
+} 
+/* RESET APPEARANCE */ 
+function resetAppearance(){ 
+  setTheme('light'); 
+  document.getElementById('font-size-range').value=16; 
+  setFontSize(16); 
+  document.documentElement.style.setProperty('--gold','#c9922a'); 
+  document.documentElement.style.setProperty('--gold2','#f0b940'); 
+  document.querySelectorAll('.swatch').forEach((s,i)=>s.classList.toggle('selected',i===0)); 
+  showToast('↩ Appearance reset to defaults!'); 
+} 
+/* PRIVACY PICKER */ 
+function pickPrivacy(el){document.querySelectorAll('.pl-option').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');} 
+/* SPACING */ 
+const spacingLabels=['Normal','Comfortable','Spacious']; 
+function setSpacing(v){document.getElementById('spacing-val').textContent=spacingLabels[v-1];document.body.style.letterSpacing=((v-1)*0.03)+'em';} 
+/* MODAL */ 
+let modalCallback=null; 
+function confirmAction(action,msg,confirmLabel){ 
+  document.getElementById('modal-msg').textContent=msg; 
+  document.getElementById('modal-confirm-btn').textContent=confirmLabel; 
+  document.getElementById('confirm-modal').classList.add('show'); 
+  modalCallback=action; 
+} 
+function closeModal(){document.getElementById('confirm-modal').classList.remove('show');modalCallback=null;} 
+document.getElementById('modal-confirm-btn').addEventListener('click',()=>{ 
+  closeModal(); 
+  const msgs={logout:'👋 Logged out successfully!',sessions:'🔒 All other sessions signed out.',deactivate:'⚠️ Account deactivated.',delete:'🗑️ Account deletion requested.'}; 
+  showToast(msgs[modalCallback]||'Done!'); 
+}); 
+document.getElementById('confirm-modal').addEventListener('click',function(e){if(e.target===this)closeModal();}); 
+</script> 
+</body> 
+</html>
